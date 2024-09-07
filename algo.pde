@@ -5,16 +5,19 @@ int gameScoreP1 = 0;
 int gameScoreP2 = 0;
 
 //numero de bolas
-int num = 1;
+int num = 500;
+//declaracoes
 float mx[] = new float[num];
 float my[] = new float[num];
 
 int p1, p2;
 
+//cores
 color roxo = #9B0CF4;
 color vermelho = #E81414;
 color branc = #FFFFFF;
 
+//tamanhos
 void setup(){
   size(640, 480);
   x = 10;
@@ -26,12 +29,15 @@ void setup(){
 void draw(){
   background(0);
   fill(branc);
+  //pontuacao
   text("SCORE P1:" + gameScoreP1 + "00", width - 430, height - 400);
   text("SCORE P2:" + gameScoreP2 + "00", width - 200, height - 400);
   ellipse(x, y, 20, 20);
   fill(vermelho);
+  //jogador 2
   rect(630, p2, 10, 80);
   fill (roxo);
+  //jogador 1
   rect(0, p1, 10, 80);
   x = x + deltaH;
   y = y + deltaV;
@@ -41,6 +47,7 @@ void draw(){
   }
   if (x < 1)
   {
+    //condicao fim de jogo
     if (y > p1 && y < p1 + 80)
     {
       deltaH = -deltaH;
@@ -50,6 +57,7 @@ void draw(){
   }
   if (x > 629)
   {
+    //condicao fim de jogo
     if (y > p2 && y < p2 + 80)
     {
       deltaH = -deltaH;
@@ -67,6 +75,7 @@ void draw(){
     ellipse(mx[index], my[index], 20, 20);
   }
   
+  //controle por teclado
   if (keyPressed == true){
     if (key == 'w' || key =='W'){
       p1 = p1 - 10;
@@ -90,6 +99,7 @@ void draw(){
   }
 }
 
+//funcao fim de jogo
 void fimJogo() {
   if(gameScoreP1 > gameScoreP2){
   text("Jogador 2 ganhou :p. Pressione qualquer tecla para sair", 200, 240);
